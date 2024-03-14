@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
+import { Moon } from "@/utils/svg/moon";
+import { Sun } from "@/utils/svg/sun";
+import styles from "./theme-switcher.module.css";
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState<boolean>(false);
@@ -16,8 +19,23 @@ const ThemeSwitcher = () => {
 
   return (
     <div>
-      <button onClick={() => setTheme("light")}>Light Mode</button>
-      <button onClick={() => setTheme("dark")}>Dark Mode</button>
+      {theme === "light" ? (
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => setTheme("dark")}
+        >
+          <Moon size={20} />
+        </button>
+      ) : (
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() => setTheme("light")}
+        >
+          <Sun size={20} />
+        </button>
+      )}
     </div>
   );
 };
